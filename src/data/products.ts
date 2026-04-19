@@ -35,7 +35,7 @@ export const products: Product[] = [
 		shortDescription: 'Relleno crujiente y tostado para quienes prefieren un perfil clásico e intenso.',
 		description:
 			'Un corazón de chocolate semiamargo que abraza una nuez entera para lograr un balance elegante entre cacao profundo y textura crujiente.',
-		image: '/images/products/semiamargo-nuez.jpeg',
+		image: '/images/products/granos-cafe-cubiertos.jpeg',
 		alt: 'Chocolate semiamargo artesanal con nuez.',
 		featured: true,
 		notes: ['Cacao semiamargo', 'Nuez tostada', 'Textura crujiente'],
@@ -94,7 +94,7 @@ export const products: Product[] = [
 		shortDescription: 'Botana premium para regalar o acompañar una bebida caliente.',
 		description:
 			'Una especialidad con granos de café cubiertos de chocolate semiamargo que combina energía, textura y un sabor persistente.',
-		image: '/images/products/granos-cafe-cubiertos.jpeg',
+		image: '/images/products/chocolate-leche.jpeg',
 		alt: 'Granos de café cubiertos de chocolate semiamargo.',
 		featured: true,
 		notes: ['Snack gourmet', 'Café entero', 'Acabado brillante'],
@@ -109,7 +109,7 @@ export const products: Product[] = [
 		shortDescription: 'Suave, cremoso y muy amigable para todos los gustos.',
 		description:
 			'Una pieza de chocolate con leche de textura sedosa y dulzor equilibrado, perfecta para públicos amplios y compras recurrentes.',
-		image: '/images/products/chocolate-leche.jpeg',
+		image: '/images/products/semiamargo-nuez.jpeg',
 		alt: 'Chocolate artesanal con leche.',
 		featured: true,
 		notes: ['Textura cremosa', 'Sabor amable', 'Versátil'],
@@ -124,7 +124,7 @@ export const products: Product[] = [
 		shortDescription: 'Versión más dulce para clientes que aman sabores clásicos.',
 		description:
 			'Una interpretación más golosa del chocolate con leche, con una sensación dulce y cremosa que recuerda los antojos tradicionales.',
-		image: '/images/products/leche-extra-azucar.jpeg',
+		image: '/images/products/semiamargo-cafe.jpeg',
 		alt: 'Chocolate con leche con extra de azúcar.',
 		notes: ['Perfil dulce', 'Cuerpo suave', 'Atractivo familiar'],
 		presentation: 'Muy práctico para surtidos populares y venta individual.',
