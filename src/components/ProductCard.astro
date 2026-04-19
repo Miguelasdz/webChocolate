@@ -1,0 +1,63 @@
+---
+import type { Product } from '../data/products';
+import { withBase } from '../utils/site';
+
+interface Props {
+	product: Product;
+	index?: number;
+}
+
+const { product, index = 0 } = Astro.props;
+const whatsappText = encodeURIComponent(
+	`Hola, me interesa pedir ${product.name} de Chocolates Artesanales. ¿Me compartes información y disponibilidad?`,
+);
+---
+
+<article
+	class="group glass-panel shine-card fade-up relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/6 p-4 transition duration-300 hover:-translate-y-1 hover:border-[var(--color-gold)]/50"
+	style={`animation-delay:${index * 120}ms;`}
+	data-category={product.category}
+>
+	<a class="block" href={`/productos/${product.slug}`}>
+		<div class="overflow-hidden rounded-[1.5rem]">
+			<img
+				src={withBase(product.image)}
+				alt={product.alt}
+				class="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+				loading="lazy"
+			/>
+		</div>
+		<div class="mt-4 space-y-3">
+			<div class="flex items-center justify-between gap-3">
+				<span class="rounded-full border border-[var(--color-gold)]/30 bg-[var(--color-gold)]/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-gold)]">
+					{product.line}
+				</span>
+			</div>
+			<div>
+				<h3 class="text-2xl text-[var(--color-cream)]">{product.name}</h3>
+				<p class="mt-2 text-sm leading-6 text-[var(--color-rose)]/88">{product.shortDescription}</p>
+			</div>
+			<div class="flex flex-wrap gap-2 text-xs text-[var(--color-cream)]/70">
+				{product.notes.map((note) => (
+					<span class="rounded-full bg-black/20 px-2.5 py-1">{note}</span>
+				))}
+			</div>
+		</div>
+	</a>
+	<div class="mt-5 flex items-center gap-3">
+		<a
+			class="inline-flex items-center justify-center rounded-full bg-[var(--color-gold)] px-4 py-2 text-sm font-bold text-[var(--color-ink)] transition hover:bg-[#f2d7a5]"
+			href={`/productos/${product.slug}`}
+		>
+			Ver detalle
+		</a>
+		<a
+			class="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-[var(--color-cream)] transition hover:border-[var(--color-gold)]/50 hover:bg-white/5"
+			href={`https://api.whatsapp.com/send?text=${whatsappText}`}
+			target="_blank"
+			rel="noreferrer"
+		>
+			Pedir por WhatsApp
+		</a>
+	</div>
+</article>

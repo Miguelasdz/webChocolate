@@ -1,11 +1,252 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { categoryLabels, featuredProducts, products } from '../data/products';
+import { withBase } from '../utils/site';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const filterOptions = [
+	{ value: 'all', label: 'Todo el catálogo' },
+	{ value: 'semiamarga', label: categoryLabels.semiamarga },
+	{ value: 'leche', label: categoryLabels.leche },
+	{ value: 'especialidades', label: categoryLabels.especialidades },
+	{ value: 'bebidas-y-cocina', label: categoryLabels['bebidas-y-cocina'] },
+];
+
+const shopWhatsappText = encodeURIComponent(
+	'Hola, quiero hacer un pedido en Chocolates Artesanales. ¿Me compartes catálogo y disponibilidad?',
+);
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	title="Chocolates Artesanales"
+	description="Catálogo artesanal de chocolates semiamargos, de leche y especialidades con pedidos por WhatsApp."
+>
+	<main class="overflow-x-hidden pb-20">
+		<section class="section-shell relative pt-6 md:pt-10">
+			<div class="absolute left-0 top-10 -z-10 h-72 w-72 rounded-full bg-[var(--color-caramel)]/20 blur-3xl"></div>
+			<div class="absolute right-10 top-24 -z-10 h-64 w-64 rounded-full bg-[var(--color-gold)]/10 blur-3xl"></div>
+
+			<nav class="glass-panel fade-up flex items-center justify-between rounded-full border border-white/10 px-4 py-3 sm:px-6">
+				<div>
+					<p class="text-xs uppercase tracking-[0.3em] text-[var(--color-gold)]">Tienda artesanal</p>
+					<p class="text-lg font-bold text-[var(--color-cream)]">Chocolates Artesanales</p>
+				</div>
+				<a
+					href={`https://api.whatsapp.com/send?text=${shopWhatsappText}`}
+					target="_blank"
+					rel="noreferrer"
+					class="rounded-full bg-[var(--color-gold)] px-4 py-2 text-sm font-extrabold text-[var(--color-ink)] transition hover:bg-[#f2d7a5]"
+				>
+					Pedir ahora
+				</a>
+			</nav>
+
+			<div class="grid gap-8 pt-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+				<div class="fade-up space-y-7">
+					<div class="space-y-4">
+						<span class="inline-flex rounded-full border border-[var(--color-gold)]/25 bg-[var(--color-gold)]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-gold)]">
+							Hechos para regalar, compartir y vender
+						</span>
+						<h1 class="max-w-4xl text-5xl leading-none text-[var(--color-cream)] md:text-7xl">
+							Chocolates Artesanales con presencia de tienda real
+						</h1>
+						<p class="max-w-2xl text-lg leading-8 text-[var(--color-rose)]/88">
+							Un catálogo elegante para presentar tu línea semiamarga, línea de leche,
+							especialidades y productos para bebida. Cada producto tiene su ficha y un acceso
+							directo a pedido por WhatsApp.
+						</p>
+					</div>
+
+					<div class="flex flex-wrap gap-3">
+						<a
+							href="#catalogo"
+							class="inline-flex items-center justify-center rounded-full bg-[var(--color-gold)] px-6 py-3 text-sm font-extrabold text-[var(--color-ink)] transition hover:bg-[#f2d7a5]"
+						>
+							Explorar catálogo
+						</a>
+						<a
+							href={`https://api.whatsapp.com/send?text=${shopWhatsappText}`}
+							target="_blank"
+							rel="noreferrer"
+							class="inline-flex items-center justify-center rounded-full border border-white/10 px-6 py-3 text-sm font-bold text-[var(--color-cream)] transition hover:border-[var(--color-gold)]/40 hover:bg-white/5"
+						>
+							Cotizar por WhatsApp
+						</a>
+					</div>
+
+					<div class="grid gap-4 sm:grid-cols-3">
+						<div class="glass-panel rounded-[1.6rem] border border-white/10 p-5">
+							<p class="text-3xl font-black text-[var(--color-cream)]">8</p>
+							<p class="mt-2 text-sm leading-6 text-[var(--color-rose)]/80">Productos iniciales cargados con foto y descripción.</p>
+						</div>
+						<div class="glass-panel rounded-[1.6rem] border border-white/10 p-5">
+							<p class="text-3xl font-black text-[var(--color-cream)]">4</p>
+							<p class="mt-2 text-sm leading-6 text-[var(--color-rose)]/80">Líneas de navegación para ordenar mejor el catálogo.</p>
+						</div>
+						<div class="glass-panel rounded-[1.6rem] border border-white/10 p-5">
+							<p class="text-3xl font-black text-[var(--color-cream)]">1 clic</p>
+							<p class="mt-2 text-sm leading-6 text-[var(--color-rose)]/80">Para ir a WhatsApp y comenzar un pedido.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="fade-up relative" style="animation-delay:160ms;">
+					<div class="glass-panel shine-card float-slow relative overflow-hidden rounded-[2.2rem] border border-white/10 p-3">
+						<img
+							src={withBase('/images/products/catalogo-artesanal.jpeg')}
+							alt="Selección artesanal de chocolates."
+							class="h-[520px] w-full rounded-[1.75rem] object-cover"
+						/>
+						<div class="absolute inset-x-8 bottom-8 rounded-[1.6rem] border border-white/10 bg-[rgba(20,12,9,0.72)] p-5 backdrop-blur-xl">
+							<p class="text-xs uppercase tracking-[0.24em] text-[var(--color-gold)]">Colección destacada</p>
+							<h2 class="mt-2 text-3xl text-[var(--color-cream)]">Detalles artesanales que sí venden</h2>
+							<p class="mt-2 text-sm leading-6 text-[var(--color-rose)]/85">
+								Fotografía cálida, fichas por producto y una experiencia enfocada en pedidos directos.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-shell pt-16">
+			<div class="grid gap-4 md:grid-cols-4">
+				{Object.entries(categoryLabels).map(([key, label], index) => (
+					<div class="glass-panel fade-up rounded-[1.8rem] border border-white/10 p-5" style={`animation-delay:${index * 120}ms;`}>
+						<p class="text-sm uppercase tracking-[0.22em] text-[var(--color-gold)]">Colección</p>
+						<h2 class="mt-2 text-2xl text-[var(--color-cream)]">{label}</h2>
+						<p class="mt-2 text-sm leading-6 text-[var(--color-rose)]/82">
+							{products.filter((product) => product.category === key).length} producto(s) listos para mostrar.
+						</p>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<section class="section-shell pt-16">
+			<div class="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+				<div>
+					<p class="text-sm uppercase tracking-[0.28em] text-[var(--color-gold)]">Favoritos</p>
+					<h2 class="mt-2 text-4xl text-[var(--color-cream)]">Productos destacados</h2>
+				</div>
+				<p class="max-w-2xl text-sm leading-7 text-[var(--color-rose)]/82">
+					Una primera selección para transmitir variedad, calidad artesanal y antojo desde la portada.
+				</p>
+			</div>
+			<div class="grid gap-5 lg:grid-cols-4">
+				{featuredProducts.map((product, index) => (
+					<ProductCard product={product} index={index} />
+				))}
+			</div>
+		</section>
+
+		<section id="catalogo" class="section-shell pt-20">
+			<div class="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+				<div>
+					<p class="text-sm uppercase tracking-[0.28em] text-[var(--color-gold)]">Catálogo completo</p>
+					<h2 class="mt-2 text-4xl text-[var(--color-cream)]">Elige por línea y descubre cada detalle</h2>
+				</div>
+				<p class="max-w-2xl text-sm leading-7 text-[var(--color-rose)]/82">
+					Usa el filtro para recorrer el catálogo y entra a cada ficha para ver una descripción más
+					completa y pedir por WhatsApp.
+				</p>
+			</div>
+
+			<div class="glass-panel sticky top-4 z-20 mb-7 rounded-[1.8rem] border border-white/10 p-4">
+				<div class="flex flex-wrap gap-3" id="catalog-filters">
+					{filterOptions.map((option, index) => (
+						<button
+							type="button"
+							class:list={[
+								'filter-button rounded-full px-4 py-2 text-sm font-bold transition',
+								index === 0
+									? 'bg-[var(--color-gold)] text-[var(--color-ink)]'
+									: 'border border-white/10 bg-white/5 text-[var(--color-cream)] hover:border-[var(--color-gold)]/35 hover:bg-white/10',
+							]}
+							data-filter={option.value}
+						>
+							{option.label}
+						</button>
+					))}
+				</div>
+			</div>
+
+			<div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3" id="product-grid">
+				{products.map((product, index) => (
+					<ProductCard product={product} index={index} />
+				))}
+			</div>
+			<p id="empty-state" class="hidden pt-6 text-center text-sm text-[var(--color-rose)]/82">
+				No hay productos visibles con ese filtro.
+			</p>
+		</section>
+
+		<section class="section-shell pt-20">
+			<div class="glass-panel shine-card relative overflow-hidden rounded-[2.4rem] border border-white/10 p-8 md:p-10">
+				<div class="absolute -right-8 top-0 h-40 w-40 rounded-full bg-[var(--color-gold)]/10 blur-3xl"></div>
+				<div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+					<div>
+						<p class="text-sm uppercase tracking-[0.28em] text-[var(--color-gold)]">Pedidos directos</p>
+						<h2 class="mt-3 text-4xl text-[var(--color-cream)]">Convierte visitas en mensajes reales</h2>
+						<p class="mt-4 text-base leading-8 text-[var(--color-rose)]/85">
+							Cada producto ya enlaza a WhatsApp con un mensaje precargado. Eso ayuda a que tus
+							clientes pasen del antojo al pedido sin fricción.
+						</p>
+					</div>
+					<div class="grid gap-4 md:grid-cols-2">
+						<div class="rounded-[1.8rem] border border-white/10 bg-black/15 p-5">
+							<p class="text-sm font-semibold text-[var(--color-gold)]">Sugerencia comercial</p>
+							<p class="mt-3 text-sm leading-7 text-[var(--color-cream)]/85">
+								Si luego me compartes tu número, te dejo el WhatsApp conectado a tu contacto real.
+							</p>
+						</div>
+						<div class="rounded-[1.8rem] border border-white/10 bg-black/15 p-5">
+							<p class="text-sm font-semibold text-[var(--color-gold)]">Escalabilidad</p>
+							<p class="mt-3 text-sm leading-7 text-[var(--color-cream)]/85">
+								La estructura ya permite añadir más fotos, productos, precios y promociones.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer class="section-shell pt-16">
+			<div class="border-t border-white/10 py-8 text-sm text-[var(--color-rose)]/76">
+				<p>Chocolates Artesanales. Catálogo visual en Astro + Tailwind con detalle por producto y pedidos por WhatsApp.</p>
+			</div>
+		</footer>
+	</main>
+
+	<script is:inline>
+		const buttons = Array.from(document.querySelectorAll('.filter-button'));
+		const cards = Array.from(document.querySelectorAll('[data-category]'));
+		const emptyState = document.querySelector('#empty-state');
+
+		const applyFilter = (value) => {
+			let visibleCount = 0;
+
+			cards.forEach((card) => {
+				const shouldShow = value === 'all' || card.dataset.category === value;
+				card.classList.toggle('hidden', !shouldShow);
+				if (shouldShow) visibleCount += 1;
+			});
+
+			emptyState?.classList.toggle('hidden', visibleCount > 0);
+
+			buttons.forEach((button) => {
+				const active = button.dataset.filter === value;
+				button.classList.toggle('bg-[var(--color-gold)]', active);
+				button.classList.toggle('text-[var(--color-ink)]', active);
+				button.classList.toggle('border', !active);
+				button.classList.toggle('border-white/10', !active);
+				button.classList.toggle('bg-white/5', !active);
+				button.classList.toggle('text-[var(--color-cream)]', !active);
+			});
+		};
+
+		buttons.forEach((button) => {
+			button.addEventListener('click', () => applyFilter(button.dataset.filter || 'all'));
+		});
+	</script>
 </Layout>
