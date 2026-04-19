@@ -1,6 +1,7 @@
 ---
 import type { Product } from '../data/products';
 import { withBase } from '../utils/site';
+import { buildWhatsAppUrl } from '../utils/whatsapp';
 
 interface Props {
 	product: Product;
@@ -8,7 +9,7 @@ interface Props {
 }
 
 const { product, index = 0 } = Astro.props;
-const whatsappText = encodeURIComponent(
+const whatsappUrl = buildWhatsAppUrl(
 	`Hola, me interesa pedir ${product.name} de Chocolates Artesanales. ¿Me compartes información y disponibilidad?`,
 );
 ---
@@ -53,7 +54,7 @@ const whatsappText = encodeURIComponent(
 		</a>
 		<a
 			class="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-[var(--color-cream)] transition hover:border-[var(--color-gold)]/50 hover:bg-white/5"
-			href={`https://api.whatsapp.com/send?text=${whatsappText}`}
+			href={whatsappUrl}
 			target="_blank"
 			rel="noreferrer"
 		>

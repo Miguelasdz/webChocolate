@@ -1,7 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getProductBySlug, products } from '../../data/products';
+import { products } from '../../data/products';
 import { withBase } from '../../utils/site';
+import { buildWhatsAppUrl } from '../../utils/whatsapp';
 
 export function getStaticPaths() {
 	return products.map((product) => ({
@@ -14,7 +15,7 @@ const { product } = Astro.props;
 const relatedProducts = products
 	.filter((item) => item.category === product.category && item.slug !== product.slug)
 	.slice(0, 3);
-const whatsappText = encodeURIComponent(
+const whatsappUrl = buildWhatsAppUrl(
 	`Hola, quiero pedir ${product.name} de Chocolates Artesanales. ¿Me puedes compartir opciones de compra y entrega?`,
 );
 ---
@@ -72,7 +73,7 @@ const whatsappText = encodeURIComponent(
 
 				<div class="flex flex-wrap gap-3">
 					<a
-						href={`https://api.whatsapp.com/send?text=${whatsappText}`}
+						href={whatsappUrl}
 						target="_blank"
 						rel="noreferrer"
 						class="inline-flex items-center justify-center rounded-full bg-[var(--color-gold)] px-6 py-3 text-sm font-extrabold text-[var(--color-ink)] transition hover:bg-[#f2d7a5]"
