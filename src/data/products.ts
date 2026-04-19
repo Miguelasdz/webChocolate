@@ -124,7 +124,7 @@ export const products: Product[] = [
 		shortDescription: 'Versión más dulce para clientes que aman sabores clásicos.',
 		description:
 			'Una interpretación más golosa del chocolate con leche, con una sensación dulce y cremosa que recuerda los antojos tradicionales.',
-		image: '/images/products/semiamargo-cafe.jpeg',
+		image: '/images/products/extra-azucar.jpeg',
 		alt: 'Chocolate con leche con extra de azúcar.',
 		notes: ['Perfil dulce', 'Cuerpo suave', 'Atractivo familiar'],
 		presentation: 'Muy práctico para surtidos populares y venta individual.',
